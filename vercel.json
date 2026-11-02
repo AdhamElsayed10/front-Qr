@@ -38,11 +38,11 @@
     },
     {
       "source": "/api/:path*",
-      "destination": "https://qrbackend-production-a26d.up.railway.app/api/:path*"
+      "destination": "https://back-qr-production.up.railway.app/api/:path*"
     },
     {
       "source": "/pdf/:path*",
-      "destination": "https://qrbackend-production-a26d.up.railway.app/pdf/:path*"
+      "destination": "https://back-qr-production.up.railway.app/pdf/:path*"
     },
     {
       "source": "/((?!api|pdf).*|[^.]+)",
