@@ -121,7 +121,7 @@ function DocumentCard({ doc, onView, onDownload, onCopyUrl, onDelete, onEdit, on
             : <Download size={13} />}
           Download
         </Button>
-        <Button variant="ghost" size="sm" onClick={() => onEdit(doc)} title="Edit QR fields">
+        <Button variant="ghost" size="sm" onClick={() => onEdit(doc)} title="Edit public page">
           <Pencil size={13} />
           Edit
         </Button>
@@ -227,9 +227,9 @@ export default function DocumentsPage() {
       const updated = res?.data;
       setDocs((prev) => prev.map((d) => (d.id === editingDoc.id ? { ...d, ...updated } : d)));
       setEditingDoc(null);
-      toast.success('QR fields updated');
+      toast.success('Public page updated');
     } catch {
-      toast.error('Failed to update QR fields');
+      toast.error('Failed to update public page');
     } finally {
       setSavingContract(false);
     }
@@ -490,7 +490,7 @@ export default function DocumentsPage() {
                           <ActionBtn icon={ExternalLink} label="Open verification page" onClick={() => handleView(doc)} />
                           <ActionBtn icon={Download} label="Download PDF"
                             onClick={() => handleDownload(doc)} loading={downloadingId === doc.id} />
-                          <ActionBtn icon={Pencil} label="Edit QR fields" onClick={() => setEditingDoc(doc)} />
+                          <ActionBtn icon={Pencil} label="Edit public page" onClick={() => setEditingDoc(doc)} />
                           <ActionBtn icon={Move} label="Re-stamp QR placement (client)" onClick={() => openPlacement(doc)} />
                           <ActionBtn icon={Trash2} label="Delete PDF" destructive onClick={() => setDeleteTarget(doc)} />
                         </div>
@@ -539,12 +539,12 @@ export default function DocumentsPage() {
         </div>
       )}
 
-      {/* Edit QR fields dialog */}
+      {/* Edit public page dialog */}
       <Dialog open={!!editingDoc} onOpenChange={(open) => { if (!open) setEditingDoc(null); }}>
         <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
-          <DialogTitle>Edit QR fields</DialogTitle>
+          <DialogTitle>Edit public page</DialogTitle>
           <DialogDescription>
-            Update the fields behind this document&rsquo;s QR code. Saving re-marks the data as filled.
+            Update the issue date, expiry date, and validity shown on this document&rsquo;s public verification page.
           </DialogDescription>
           {editingDoc && (
             <ContractDataEditor
